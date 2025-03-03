@@ -1,0 +1,36 @@
+@startuml inventiveDB
+left to right direction
+
+entity users {
+    +id : int
+    --
+    username : string
+    password : string
+    createdAt : date
+    updatedAt : date
+}
+
+entity inventories {
+    +id : int
+    +//userId// : int
+    --
+    inventory : string
+    createdAt : date
+    updatedAt : date
+}
+
+entity products {
+    +id : int
+    +//inventoryId// : int
+    --
+    product : string
+    description : string
+    quantity : int
+    createdAt : date
+    updatedAt : date
+}
+
+users ||--o{ inventories : own
+inventories ||--o{ products : contain
+
+@enduml
