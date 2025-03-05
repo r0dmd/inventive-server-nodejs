@@ -2,12 +2,14 @@
 left to right direction
 
 entity users {
-    +id : int
-    --
-    username : string
-    password : string
-    createdAt : date
-    updatedAt : date
++id : int
+--
+username : string
+password : string
+role : enum('admin', 'normal')
+createdAt : datetime
+modifiedAt : datetime
+lastAuthUpdate : datetime
 }
 
 entity inventories {
@@ -15,8 +17,8 @@ entity inventories {
     +//userId// : int
     --
     inventory : string
-    createdAt : date
-    updatedAt : date
+    createdAt : datetime
+    modifiedAt : datetime
 }
 
 entity products {
@@ -27,7 +29,7 @@ entity products {
     description : string
     quantity : int
     createdAt : date
-    updatedAt : date
+    modifiedAt : datetime
 }
 
 users ||--o{ inventories : own
