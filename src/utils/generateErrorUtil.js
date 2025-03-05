@@ -1,4 +1,4 @@
-// Función que genera un error
+// Function which generates an error
 const generateErrorUtil = (msg, code) => {
     const err = new Error(msg);
     err.httpStatus = code;
