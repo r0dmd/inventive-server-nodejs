@@ -1,63 +1,56 @@
-// We import our custom variables from our file .env
+// IMPORTS
+// Environment variables from the .env file
 import 'dotenv/config';
+const { PORT, UPLOADS_DIR } = process.env;
 
-// Import the dependencies.
+// Dependencies
 import express from 'express';
 import fileUpload from 'express-fileupload';
 import morgan from 'morgan';
 import cors from 'cors';
 
-// Import the routes.
+// Routes
+import {
+    // inventoriesRoutes,
+    // productsRoutes,
+    usersRoutes,
+} from './src/routes/index.js';
 
-import usersRoutes from './src/routes/usersRoutes.js';
-
-// Import the variable from the enviroment that we need
-const { PORT, UPLOADS_DIR } = process.env;
-
-//Create Server.
+// ------------------------------------------
+// Generating the server
 const app = express();
 
-// Middleware that avoids conexion prolems between client and server.
-app.use(cors());
+app.use(cors()); // Prevents connection problems between client and server
+app.use(morgan('dev')); // Query info on the console
+app.use(express.json()); // Parses JSON body
+app.use(fileUpload()); // Parses "form-data" body (for files)
+app.use(express.static(UPLOADS_DIR)); // Tells express what the static file directory is
 
-// Middleware that shows Express where the static files are stored.
-app.use(express.static(UPLOADS_DIR));
-
-// Middleware that shows on the console the information from the entries we ask for.
-app.use(morgan('dev'));
-
-// Middleware that allows to read the body in the JSON format.
-app.use(express.json());
-
-// Middleware that allows to read the body in the form-data format( allows reading files ).
-app.use(fileUpload());
-
-// Middleware that shows Express where the routes are located .
-
-//  this is an example, need to replace with the correct routes
+// Middlewares which tell express where the routes are located
 app.use('/api/users', usersRoutes);
-// app.use('/api', productRoutes);
+// app.use('/api/inventories', inventoriesRoutes);
+// app.use('/api/products', productsRoutes);
 
-// Middleware that allows error handleling.
+// Error-handling middleware
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
     console.error(err);
-
+    // NOTE: hhtpStatus is a custom property that we generate and give a value to (by default, errors don't have it). If we pass to it an error code, it will show; if not, it will return 500, which is an unespecific error
     res.status(err.httpStatus || 500).send({
         status: 'error',
         message: err.message,
     });
 });
 
-// Middleware for route not found.
+// 404 Route Not Found middleware
 app.use((req, res) => {
     res.status(404).send({
         status: 'error',
-        message: 'Ruta no encontrada',
+        message: 'Route not found',
     });
 });
 
-// We allow the server to listlen to petitions from a given port.
+// We open the server to listen to petitions from a given port
 app.listen(PORT, () => {
     console.log(`Server listening at http://localhost:${PORT}`);
 });
