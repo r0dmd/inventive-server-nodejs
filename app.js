@@ -35,7 +35,7 @@ app.use(fileUpload());
 // Middleware that shows Express where the routes are located .
 
 //  this is an example, need to replace with the correct routes
-// app.use('/api', userRoutes);
+app.use('/api/users', usersRoutes);
 // app.use('/api', productRoutes);
 
 // Middleware that allows error handleling.
@@ -59,5 +59,5 @@ app.use((req, res) => {
 
 // We allow the server to listlen to petitions from a given port.
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${PORT}`);
+    console.log(`Server listening at http://localhost:${PORT}`);
 });
