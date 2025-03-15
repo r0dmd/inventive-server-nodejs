@@ -5,7 +5,7 @@ import express from 'express';
 // TODO Controllers
 import {
     addUserController,
-    // loginUserController,
+    loginUserController,
     // getUserController,
     // updateUserController,
     // updatePassController,
@@ -24,7 +24,7 @@ const router = express.Router();
 
 // Public routes
 router.post('/register', addUserController);
-//router.post('/login', loginUserController);
+router.post('/login', loginUserController);
 
 // User routes (authentication required)
 //router.get('/profile', authUserMiddleware, getUserController);
