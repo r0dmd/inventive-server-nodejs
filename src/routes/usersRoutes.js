@@ -5,38 +5,38 @@ import express from 'express';
 // TODO Controllers
 import {
     addUserController,
-    loginUserController,
-    getUserController,
-    updateUserController,
-    updatePassController,
-    getAllUsersController,
-    deleteUserController,
+    // loginUserController,
+    // getUserController,
+    // updateUserController,
+    // updatePassController,
+    // getAllUsersController,
+    // deleteUserController,
 } from '../controllers/users/index.js';
 
 // TODO middlewares
-import {
+/* import {
     authAdminMiddleware,
     authUserMiddleware,
-} from '../middlewares/index.js';
+} from '../middlewares/index.js'; */
 
 // ------------------------------------------
 const router = express.Router();
 
 // Public routes
 router.post('/register', addUserController);
-router.post('/login', loginUserController);
+//router.post('/login', loginUserController);
 
 // User routes (authentication required)
-router.get('/profile', authUserMiddleware, getUserController);
-router.put('/profile', authUserMiddleware, updateUserController);
-router.patch('/profile/password', authUserMiddleware, updatePassController);
+//router.get('/profile', authUserMiddleware, getUserController);
+//router.put('/profile', authUserMiddleware, updateUserController);
+//router.patch('/profile/password', authUserMiddleware, updatePassController);
 
 // Admin routes
-router.get('/users', authAdminMiddleware, getAllUsersController);
-router.delete(
+//router.get('/users', authAdminMiddleware, getAllUsersController);
+/* router.delete(
     '/users/:userId/deactivate',
     authAdminMiddleware,
     deleteUserController,
-);
+); */
 
 export default router;
