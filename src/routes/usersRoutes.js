@@ -6,7 +6,7 @@ import express from 'express';
 import {
     addUserController,
     loginUserController,
-    // getUserController,
+    getUserController,
     // updateUserController,
     // updatePassController,
     // getAllUsersController,
@@ -14,10 +14,10 @@ import {
 } from '../controllers/users/index.js';
 
 // TODO middlewares
-/* import {
-    authAdminMiddleware,
+import {
+    // authAdminMiddleware,
     authUserMiddleware,
-} from '../middlewares/index.js'; */
+} from '../middlewares/index.js';
 
 // ------------------------------------------
 const router = express.Router();
@@ -27,7 +27,7 @@ router.post('/register', addUserController);
 router.post('/login', loginUserController);
 
 // User routes (authentication required)
-//router.get('/profile', authUserMiddleware, getUserController);
+router.get('/profile', authUserMiddleware, getUserController);
 //router.put('/profile', authUserMiddleware, updateUserController);
 //router.patch('/profile/password', authUserMiddleware, updatePassController);
 
