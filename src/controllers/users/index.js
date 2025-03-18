@@ -1,5 +1,11 @@
 import addUserController from './addUserController.js';
-import loginUserController from './loginUserController.js';
+import getAllUsersController from './getAllUsersController.js';
 import getUserController from './getUserController.js';
+import loginUserController from './loginUserController.js';
 
-export { addUserController, loginUserController, getUserController };
+export {
+    addUserController,
+    getAllUsersController,
+    getUserController,
+    loginUserController,
+};

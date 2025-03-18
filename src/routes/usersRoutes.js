@@ -9,13 +9,13 @@ import {
     getUserController,
     // updateUserController,
     // updatePassController,
-    // getAllUsersController,
+    getAllUsersController,
     // deleteUserController,
 } from '../controllers/users/index.js';
 
 // TODO middlewares
 import {
-    // authAdminMiddleware,
+    authAdminMiddleware,
     authUserMiddleware,
 } from '../middlewares/index.js';
 
@@ -32,11 +32,7 @@ router.get('/profile', authUserMiddleware, getUserController);
 //router.patch('/profile/password', authUserMiddleware, updatePassController);
 
 // Admin routes
-//router.get('/users', authAdminMiddleware, getAllUsersController);
-/* router.delete(
-    '/users/:userId/deactivate',
-    authAdminMiddleware,
-    deleteUserController,
-); */
+router.get('/', authUserMiddleware, authAdminMiddleware, getAllUsersController);
+//router.delete('/users/:userId/deactivate', authUserMiddleware, authAdminMiddleware, deleteUserController);
 
 export default router;
