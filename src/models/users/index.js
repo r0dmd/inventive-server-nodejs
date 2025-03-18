@@ -1,13 +1,15 @@
 import addUserModel from './addUserModel.js';
-import selectUserByUsernameModel from './selectUserByUsernameModel.js';
+import selectAllUsersModel from './selectAllUsersModel.js';
 import selectHashedPassByUserIdModel from './selectHashedPassByUserIdModel.js';
-import updateLastAuthUpdateModel from './updateLastAuthUpdateModel.js';
 import selectUserByIdModel from './selectUserByIdModel.js';
+import selectUserByUsernameModel from './selectUserByUsernameModel.js';
+import updateLastAuthUpdateModel from './updateLastAuthUpdateModel.js';
 
 export {
     addUserModel,
-    selectUserByUsernameModel,
+    selectAllUsersModel,
     selectHashedPassByUserIdModel,
-    updateLastAuthUpdateModel,
     selectUserByIdModel,
+    selectUserByUsernameModel,
+    updateLastAuthUpdateModel,
 };
