@@ -8,7 +8,7 @@ import {
     loginUserController,
     getUserController,
     // updateUserController,
-    // updatePassController,
+    updatePassController,
     getAllUsersController,
     // deleteUserController,
 } from '../controllers/users/index.js';
@@ -29,7 +29,7 @@ router.post('/login', loginUserController);
 // User routes (authentication required)
 router.get('/profile', authUserMiddleware, getUserController);
 //router.put('/profile', authUserMiddleware, updateUserController);
-//router.patch('/profile/password', authUserMiddleware, updatePassController);
+router.patch('/profile/password', authUserMiddleware, updatePassController);
 
 // Admin routes
 router.get('/', authUserMiddleware, authAdminMiddleware, getAllUsersController);
