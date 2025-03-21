@@ -3,6 +3,7 @@ import getAllUsersController from './getAllUsersController.js';
 import getUserController from './getUserController.js';
 import loginUserController from './loginUserController.js';
 import updatePassController from './updatePassController.js';
+import updateUserController from './updateUserController.js';
 
 export {
     addUserController,
@@ -10,4 +11,5 @@ export {
     getUserController,
     loginUserController,
     updatePassController,
+    updateUserController,
 };
