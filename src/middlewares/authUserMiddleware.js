@@ -2,7 +2,7 @@
 import jwt from 'jsonwebtoken';
 
 // Import the function that generates an error.
-import generateErrorUtil from '../utils/generateErrorUtil.js';
+import { generateErrorUtil } from '../utils/index.js';
 
 // Intermediate controller function that decrypts the token and adds the user's
 // information to the request object.
@@ -13,7 +13,7 @@ const authUserMiddleware = async (req, res, next) => {
 
         // If the token is missing, throw an error.
         if (!authorization) {
-            throw generateErrorUtil('Authorization header is missing', 401);
+            generateErrorUtil('Authorization header is missing', 401);
         }
 
         try {
@@ -29,7 +29,7 @@ const authUserMiddleware = async (req, res, next) => {
         } catch (err) {
             console.error(err);
 
-            throw generateErrorUtil('Invalid token', 401);
+            generateErrorUtil('Invalid token', 401);
         }
     } catch (err) {
         next(err);

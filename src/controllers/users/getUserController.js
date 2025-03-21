@@ -1,16 +1,12 @@
-import selectUserByIdModel from '../../models/users/selectUserByIdModel.js';
+import { selectUserByIdModel } from '../../models/users/index.js';
 import { generateErrorUtil } from '../../utils/index.js';
 
 const getUserController = async (req, res, next) => {
     try {
-        if (!req.user || !req.user.id) {
-            throw generateErrorUtil('Unauthorized: Missing user data', 401);
-        }
-
         const user = await selectUserByIdModel(req.user.id);
 
         if (!user) {
-            throw generateErrorUtil('User not found', 404);
+            generateErrorUtil('User not found', 404);
         }
 
         res.send({
