@@ -6,7 +6,7 @@ import selectUserByUsernameModel from './selectUserByUsernameModel.js';
 import updateLastAuthUpdateModel from './updateLastAuthUpdateModel.js';
 import updatePassModel from './updatePassModel.js';
 import updateUserModel from './updateUserModel.js';
-
+import deleteUserByIdModel from './deleteUserModel.js';
 
 export {
     addUserModel,
@@ -17,4 +17,5 @@ export {
     updateLastAuthUpdateModel,
     updatePassModel,
     updateUserModel,
+    deleteUserByIdModel,
 };
