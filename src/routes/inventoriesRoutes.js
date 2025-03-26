@@ -1,42 +1,44 @@
+// @@@ TODO traducir comentarios
 // Importamos las dependencias.
 import express from 'express';
 
 // Importamos las funciones controladoras finales.
 import {
-    newInventorieController,
-    updateInventorieController,
-    listInventoriesController,
-    getInventorieByIdController,
-    deleteInventorieController,
+    addInventoryController,
+    updateInventoryController,
+    getAllInventoriesController,
+    getInventoryController,
+    deleteInventoryController,
 } from '../controllers/inventories/index.js';
 
 // Importamos las funciones controladoras intermedias.
-import authUserController from '../middlewares/authUserController.js';
+import { authUserController } from '../middlewares/index.js';
 
+// ------------------------------------------
 // Creamos un router.
 const router = express.Router();
 
-// Middleware que permite registrar un producto.
-router.post('/newinventories', authUserController, newInventorieController);
+// Middleware que permite registrar un INVENTARIO.
+router.post('/inventories/new', authUserController, addInventoryController);
 
 // Middleware que permite editar el nombre y/o precio de un producto.
 router.put(
-    '/inventories/:inventoriesId',
+    '/inventories/:inventoryId/update',
     authUserController,
-    updateInventorieController,
+    updateInventoryController,
 );
 
 // Middleware que retorna el listado de productos.
-router.get('/inventories', listInventoriesController);
+router.get('/inventories', getAllInventoriesController);
 
 // Middleware que retorna un producto concreto por ID.
-router.get('/inventories/:inventoriesId', getInventorieByIdController);
+router.get('/inventories/:inventoryId', getInventoryController);
 
 // Middleware que elimina un producto concreto por ID.
 router.delete(
-    '/inventories/:inventorieId',
+    '/inventories/:inventoryId/delete',
     authUserController,
-    deleteInventorieController,
+    deleteInventoryController,
 );
 
 export default router;
