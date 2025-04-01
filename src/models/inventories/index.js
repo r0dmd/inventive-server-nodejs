@@ -3,6 +3,7 @@ import deleteInventoryModel from './deleteInventoryModel.js';
 import selectInventoryByIdModel from './selectInventoryByIdModel.js';
 import selectInventoryByNameAndUserIdModel from './selectInventoryByNameAndUserIdModel.js';
 import selectUserInventoriesModel from './selectUserInventoriesModel.js';
+import updateInventoryModel from './updateIventoryModel.js';
 
 export {
     addInventoryModel,
@@ -10,4 +11,5 @@ export {
     selectInventoryByIdModel,
     selectInventoryByNameAndUserIdModel,
     selectUserInventoriesModel,
+    updateInventoryModel
 };

@@ -1,6 +1,7 @@
 import { generateErrorUtil } from '../../utils';
 import bcrypt from 'bcrypt';
-import userModel from '../../models/userModel'; // Import the user model
+import { updateUserController } from '../../models/users/index.js';
+
 
 // Controller function to update the username and password
 const updateUserController = async (req, res, next) => {
