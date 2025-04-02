@@ -11,9 +11,9 @@ import cors from 'cors';
 
 // Routes
 import {
-    // inventoriesRoutes,
-    // productsRoutes,
     usersRoutes,
+    inventoriesRoutes,
+    productsRoutes,
 } from './src/routes/index.js';
 
 // ------------------------------------------
@@ -28,8 +28,8 @@ app.use(express.static(UPLOADS_DIR)); // Tells express what the static file dire
 
 // Middlewares which tell express where the routes are located
 app.use('/api/users', usersRoutes);
-// app.use('/api/inventories', inventoriesRoutes);
-// app.use('/api/products', productsRoutes);
+app.use('/api/inventories', inventoriesRoutes);
+app.use('/api/products', productsRoutes);
 
 // Error-handling middleware
 // eslint-disable-next-line no-unused-vars
