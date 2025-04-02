@@ -1,5 +1,5 @@
 import { generateErrorUtil } from '../../utils';
-import updateInventoryModel from '../../models/updateInventoryModel.js';
+import { updateInventoryModel } from '../../models/index.js';
 
 const updateInventoryController = async (req, res, next) => {
     try {
@@ -11,31 +11,34 @@ const updateInventoryController = async (req, res, next) => {
 
         // Validate that at least one field is provided
         if (!inventory) {
-            throw generateErrorUtil('Missing fields', 400);
+            generateErrorUtil('Missing fields', 400);
         }
 
         // Check if the inventory exists and retrieve its owner
         const [inventoryData] = await pool.query(
             `SELECT userId FROM inventories WHERE id = ?`,
-            [inventoryId]
+            [inventoryId],
         );
 
         // If the inventory does not exist, throw an error
         if (inventoryData.length < 1) {
-            throw generateErrorUtil('Inventory not found', 404);
+            generateErrorUtil('Inventory not found', 404);
         }
 
         // Verify that the current user is the owner of the inventory
         if (req.user.id !== inventoryData[0].userId) {
-            throw generateErrorUtil('Insufficient permissions', 403);
+            generateErrorUtil('Insufficient permissions', 403);
         }
 
         // Call the model function to update inventory
-        const { affectedRows, updatedInventory } = await updateInventoryModel(inventoryId, inventory);
+        const { affectedRows, updatedInventory } = await updateInventoryModel(
+            inventoryId,
+            inventory,
+        );
 
         // If no rows were updated, return an error
         if (affectedRows === 0) {
-            throw generateErrorUtil('Failed to update inventory', 500);
+            generateErrorUtil('Failed to update inventory', 500);
         }
 
         // Send the response to the client
