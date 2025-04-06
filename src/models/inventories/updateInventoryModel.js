@@ -11,7 +11,8 @@ const updateInventoryModel = async (inventoryId, inventoryName) => {
 
     return {
         affectedRows: result.affectedRows,
-        updatedInventory: inventory,
+        updatedInventory: inventoryName,  // Cambié 'inventory' por 'inventoryName'
     };
+};
 
 export default updateInventoryModel;
