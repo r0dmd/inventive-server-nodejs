@@ -1,6 +1,6 @@
-import { generateErrorUtil } from '../../utils';
+import { generateErrorUtil } from '../../utils/index.js';
 import bcrypt from 'bcrypt';
-import { updateUserController } from '../../models/users/index.js';
+// import { updateUserModel, getUserByIdModel } from '../../models/users/index.js';
 
 
 // Controller function to update the username and password
