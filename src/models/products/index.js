@@ -1,7 +1,13 @@
 import addProductModel from './addProductModel.js';
+import deleteProductModel from './deleteProductModel.js';
+import selectProductByIdModel from './selectProductByIdModel.js';
 import selectProductByNameAndUserIdModel from './selectProductByNameAndUserIdModel.js';
-import selectProductByUserIdModel from './selectProductsByUserIdModel.js'
+import selectProductByUserIdModel from './selectProductsByUserIdModel.js';
 
-export { addProductModel, selectProductByNameAndUserIdModel,
-    selectProductByUserIdModel
- };
+export {
+    addProductModel,
+    deleteProductModel,
+    selectProductByIdModel,
+    selectProductByNameAndUserIdModel,
+    selectProductByUserIdModel,
+};
