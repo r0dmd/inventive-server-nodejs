@@ -1,9 +1,10 @@
-import generateErrorUtil from '../../utils/generateErrorUtil.js';
+import { generateErrorUtil } from '../../utils/index.js';
 import {
     deleteUserByIdModel,
     selectUserByIdModel,
 } from '../../models/users/index.js';
 
+// ------------------------------------------
 const deleteUserController = async (req, res, next) => {
     try {
         const { userId } = req.params;
@@ -11,18 +12,13 @@ const deleteUserController = async (req, res, next) => {
         // Fetch the user to ensure it exists
         const user = await selectUserByIdModel(userId);
         if (!user) {
-            throw generateErrorUtil('User not found', 404);
-        }
-
-        // Check if the requester has permission to delete this user
-        if (req.user.id !== user.id && req.user.role !== 'admin') {
-            throw generateErrorUtil('Insufficient permissions', 403);
+            generateErrorUtil('User not found', 404);
         }
 
         // Delete the user from the database
         const userDeleted = await deleteUserByIdModel(userId);
         if (!userDeleted) {
-            throw generateErrorUtil('User not found', 404);
+            generateErrorUtil('User not found', 404);
         }
 
         res.send({

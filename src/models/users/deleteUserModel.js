@@ -1,13 +1,21 @@
 import getPool from '../../db/getPool.js';
 
-const deleteUserByIdModel = async (id) => {
+// ------------------------------------------
+const deleteUserModel = async (userId) => {
     const pool = await getPool();
 
-    // Delete the user with the given ID
-    const [result] = await pool.query(`DELETE FROM users WHERE id = ?`, [id]);
+    const deletedUsername = crypto.randomUUID().replace(/-/g, '').slice(0, 24);
 
-    // Check if any row was affected (if the user existed)
-    return result.affectedRows > 0;
+    // Actualizamos la base de datos.
+    const [res] = await pool.query(
+        `UPDATE users SET modifiedAt = NOW(), lastAuthUpdate = NOW(),
+         password = "Removed user",
+         username = ?
+         WHERE id = ?`,
+        [deletedUsername, userId],
+    );
+
+    return res.affectedRows;
 };
 
-export default deleteUserByIdModel;
+export default deleteUserModel;

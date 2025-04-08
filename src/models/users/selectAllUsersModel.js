@@ -6,7 +6,7 @@ const selectAllUsersModel = async () => {
 
     // We only select users that have not been deleted
     const [users] = await pool.query(
-        `SELECT id, username, role FROM users  WHERE password <> "Removed user"`,
+        `SELECT id, username, role FROM users WHERE password <> "Removed user"`,
     );
     return users;
 };

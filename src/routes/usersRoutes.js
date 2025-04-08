@@ -34,7 +34,7 @@ router.patch('/profile/password', authUserMiddleware, updatePassController);
 // Admin routes
 router.get('/', authUserMiddleware, authAdminMiddleware, getAllUsersController);
 router.delete(
-    '/users/:userId/deactivate',
+    '/:userId/deactivate',
     authUserMiddleware,
     authAdminMiddleware,
     deleteUserController,
