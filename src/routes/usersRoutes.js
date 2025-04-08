@@ -7,10 +7,10 @@ import {
     addUserController,
     loginUserController,
     getUserController,
-    // updateUserController,
+    updateUserController,
     updatePassController,
     getAllUsersController,
-    // deleteUserController,
+    deleteUserController,
 } from '../controllers/users/index.js';
 
 // TODO middlewares
@@ -28,11 +28,16 @@ router.post('/login', loginUserController);
 
 // User routes (authentication required)
 router.get('/profile', authUserMiddleware, getUserController);
-//router.put('/profile', authUserMiddleware, updateUserController);
+router.put('/profile', authUserMiddleware, updateUserController);
 router.patch('/profile/password', authUserMiddleware, updatePassController);
 
 // Admin routes
 router.get('/', authUserMiddleware, authAdminMiddleware, getAllUsersController);
-//router.delete('/users/:userId/deactivate', authUserMiddleware, authAdminMiddleware, deleteUserController);
+router.delete(
+    '/:userId/deactivate',
+    authUserMiddleware,
+    authAdminMiddleware,
+    deleteUserController,
+);
 
 export default router;

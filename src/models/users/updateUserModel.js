@@ -1,28 +1,18 @@
 import getPool from '../../db/getPool.js';
 
-const updateUserModel = async (userId, updatedData) => {
+const updateUserModel = async (userId, newUsername) => {
     const pool = await getPool();
 
-    const queryParts = [];
-    const queryParams = [];
+    console.log(userId);
+    console.log(newUsername);
 
-    if (updatedData.username) {
-        queryParts.push('username = ?');
-        queryParams.push(updatedData.username);
-    }
-    if (updatedData.password) {
-        queryParts.push('password = ?');
-        queryParams.push(updatedData.password);
-    }
+    const [res] = await pool.query(
+        `
+    UPDATE users SET username = ?, modifiedAt = CURRENT_TIMESTAMP WHERE id = ?`,
+        [newUsername, userId],
+    );
 
-    if (queryParts.length === 0) {
-        throw new Error('No data provided for update');
-    }
-
-    queryParams.push(userId);
-    const query = `UPDATE users SET ${queryParts.join(', ')} WHERE id = ?`;
-
-    await pool.query(query, queryParams);
+    return res.affectedRows;
 };
 
 export default updateUserModel;
