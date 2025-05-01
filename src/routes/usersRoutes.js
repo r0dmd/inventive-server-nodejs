@@ -2,7 +2,6 @@
 
 import express from 'express';
 
-// TODO Controllers
 import {
     addUserController,
     loginUserController,
@@ -13,7 +12,6 @@ import {
     deleteUserController,
 } from '../controllers/users/index.js';
 
-// TODO middlewares
 import {
     authAdminMiddleware,
     authUserMiddleware,
@@ -22,16 +20,13 @@ import {
 // ------------------------------------------
 const router = express.Router();
 
-// Public routes
 router.post('/register', addUserController);
 router.post('/login', loginUserController);
 
-// User routes (authentication required)
 router.get('/profile', authUserMiddleware, getUserController);
 router.put('/profile', authUserMiddleware, updateUserController);
 router.patch('/profile/password', authUserMiddleware, updatePassController);
 
-// Admin routes
 router.get('/', authUserMiddleware, authAdminMiddleware, getAllUsersController);
 router.delete(
     '/:userId/deactivate',

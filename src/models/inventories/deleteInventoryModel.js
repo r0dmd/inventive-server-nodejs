@@ -6,7 +6,7 @@ const deleteInventoryModel = async (inventoryId) => {
 
     const [res] = await pool.query(
         `
-        DELETE * FROM inventories WHERE id = ?`,
+        DELETE FROM inventories WHERE id = ?`,
         [inventoryId],
     );
 
