@@ -12,15 +12,15 @@ import { authUserMiddleware } from '../middlewares/index.js';
 // ------------------------------------------
 const router = express.Router();
 
-router.post('/inventories/new', authUserMiddleware, addInventoryController);
-router.get('/inventories', authUserMiddleware, getUserInventoriesController);
+router.post('/new', authUserMiddleware, addInventoryController);
+router.get('/', authUserMiddleware, getUserInventoriesController);
 router.put(
-    '/inventories/:inventoryId/update',
+    '/:inventoryId/update',
     authUserMiddleware,
     updateInventoryController,
 );
 router.delete(
-    '/inventories/:inventoryId/delete',
+    '/:inventoryId/delete',
     authUserMiddleware,
     deleteInventoryController,
 );
