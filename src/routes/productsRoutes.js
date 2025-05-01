@@ -10,11 +10,15 @@ import { authUserMiddleware } from '../middlewares/index.js';
 // ------------------------------------------
 const router = express.Router();
 
-router.post('/new', authUserMiddleware, addProductController);
-router.get('/', authUserMiddleware, getUserProductsController);
-router.put('/:productId', authUserMiddleware, updateProductController);
+router.post('/:inventoryId/new', authUserMiddleware, addProductController);
+router.get('/:inventoryId', authUserMiddleware, getUserProductsController);
+router.put(
+    '/:inventoryId/:productId',
+    authUserMiddleware,
+    updateProductController,
+);
 router.delete(
-    '/:productId/delete',
+    '/:inventoryId/:productId/delete',
     authUserMiddleware,
     deleteProductController,
 );

@@ -6,7 +6,7 @@ const deleteProductModel = async (productId) => {
 
     const [res] = await pool.query(
         `
-        DELETE * FROM products WHERE id = ?`,
+        DELETE FROM products WHERE id = ?`,
         [productId],
     );
 
