@@ -1,21 +1,16 @@
-
-
 import getPool from '../../db/getPool.js';
 
 // ------------------------------------------
 const updateProductModel = async (productId, fieldsToUpdate) => {
     const pool = await getPool();
-
     const fields = [];
     const values = [];
 
-    // Recorremos los campos enviados en el body
     for (const key in fieldsToUpdate) {
         fields.push(`${key} = ?`);
         values.push(fieldsToUpdate[key]);
     }
 
-    // Añadimos el campo modifiedAt y el productId al final
     fields.push(`modifiedAt = CURRENT_TIMESTAMP`);
     values.push(productId);
 
@@ -25,7 +20,7 @@ const updateProductModel = async (productId, fieldsToUpdate) => {
         SET ${fields.join(', ')}
         WHERE id = ?
         `,
-        values
+        values,
     );
 
     return res.affectedRows;

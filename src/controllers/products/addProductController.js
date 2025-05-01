@@ -4,7 +4,7 @@ import { productSchema } from '../../schemas/products/index.js';
 
 import {
     addProductModel,
-    selectProductByNameAndUserIdModel,
+    selectProductByNameAndInventoryIdModel,
 } from '../../models/products/index.js';
 
 // ------------------------------------------
@@ -13,16 +13,17 @@ const addProductController = async (req, res, next) => {
         await validateSchemaUtil(productSchema, req.body);
 
         const { productName, description, quantity } = req.body;
+        const { inventoryId } = req.params;
 
-        const productExists = await selectProductByNameAndUserIdModel(
+        const productExists = await selectProductByNameAndInventoryIdModel(
             productName,
-            req.user.id,
+            inventoryId,
         );
         if (productExists)
             generateErrorUtil('You already have this product', 409);
 
         const newProductId = await addProductModel(
-            req.user.id,
+            inventoryId,
             productName,
             description,
             quantity,
