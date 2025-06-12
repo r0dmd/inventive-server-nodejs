@@ -1,16 +1,16 @@
-import getPool from '../../db/getPool.js';
+import getPool from "../../db/getPool.js";
 
 // ------------------------------------------
 const deleteProductModel = async (productId) => {
-    const pool = await getPool();
+  const pool = await getPool();
 
-    const [res] = await pool.query(
-        `
+  const [res] = await pool.query(
+    `
         DELETE FROM products WHERE id = ?`,
-        [productId],
-    );
+    [productId],
+  );
 
-    return res.affectedRows;
+  return res.affectedRows;
 };
 
 export default deleteProductModel;

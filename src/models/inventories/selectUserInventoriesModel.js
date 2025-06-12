@@ -1,16 +1,16 @@
-import getPool from '../../db/getPool.js';
+import getPool from "../../db/getPool.js";
 
 // ------------------------------------------
 const selectUserInventoriesModel = async (userId) => {
-    const pool = await getPool();
+  const pool = await getPool();
 
-    const [inventories] = await pool.query(
-        `
+  const [inventories] = await pool.query(
+    `
         SELECT * FROM inventories WHERE userId = ?`,
-        [userId],
-    );
+    [userId],
+  );
 
-    return inventories;
+  return inventories;
 };
 
 export default selectUserInventoriesModel;

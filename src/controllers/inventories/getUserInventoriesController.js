@@ -1,20 +1,17 @@
-import { selectUserInventoriesModel } from '../../models/inventories/index.js';
-import { generateErrorUtil } from '../../utils/index.js';
+import { selectUserInventoriesModel } from "../../models/inventories/index.js";
 
 // ------------------------------------------
 const getUserInventoriesController = async (req, res, next) => {
-    try {
-        const inventories = await selectUserInventoriesModel(req.user.id);
-        if (inventories.length < 1)
-            generateErrorUtil('Inventories not found for this user', 404);
+  try {
+    const inventories = await selectUserInventoriesModel(req.user.id);
 
-        res.send({
-            status: 'ok',
-            data: { inventories },
-        });
-    } catch (err) {
-        next(err);
-    }
+    res.send({
+      status: "ok",
+      data: { inventories },
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
 export default getUserInventoriesController;

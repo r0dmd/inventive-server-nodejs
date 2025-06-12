@@ -1,29 +1,29 @@
-import getPool from '../../db/getPool.js';
+import getPool from "../../db/getPool.js";
 
 // ------------------------------------------
 const updateProductModel = async (productId, fieldsToUpdate) => {
-    const pool = await getPool();
-    const fields = [];
-    const values = [];
+  const pool = await getPool();
+  const fields = [];
+  const values = [];
 
-    for (const key in fieldsToUpdate) {
-        fields.push(`${key} = ?`);
-        values.push(fieldsToUpdate[key]);
-    }
+  for (const key in fieldsToUpdate) {
+    fields.push(`${key} = ?`);
+    values.push(fieldsToUpdate[key]);
+  }
 
-    fields.push(`modifiedAt = CURRENT_TIMESTAMP`);
-    values.push(productId);
+  fields.push("modifiedAt = CURRENT_TIMESTAMP");
+  values.push(productId);
 
-    const [res] = await pool.query(
-        `
+  const [res] = await pool.query(
+    `
         UPDATE products
-        SET ${fields.join(', ')}
+        SET ${fields.join(", ")}
         WHERE id = ?
         `,
-        values,
-    );
+    values,
+  );
 
-    return res.affectedRows;
+  return res.affectedRows;
 };
 
 export default updateProductModel;

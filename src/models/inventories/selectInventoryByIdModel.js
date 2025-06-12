@@ -1,15 +1,15 @@
-import getPool from '../../db/getPool.js';
+import getPool from "../../db/getPool.js";
 
 // ------------------------------------------
 const selectInventoryByIdModel = async (inventoryId) => {
-    const pool = await getPool();
+  const pool = await getPool();
 
-    const [inventory] = await pool.query(
-        `SELECT * FROM inventories WHERE id = ?`,
-        [inventoryId],
-    );
+  const [inventory] = await pool.query(
+    "SELECT * FROM inventories WHERE id = ?",
+    [inventoryId],
+  );
 
-    return inventory;
+  return inventory;
 };
 
 export default selectInventoryByIdModel;

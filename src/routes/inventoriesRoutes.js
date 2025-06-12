@@ -1,28 +1,28 @@
-import express from 'express';
+import express from "express";
 
 import {
-    addInventoryController,
-    updateInventoryController,
-    getUserInventoriesController,
-    deleteInventoryController,
-} from '../controllers/inventories/index.js';
+  addInventoryController,
+  deleteInventoryController,
+  getUserInventoriesController,
+  updateInventoryController,
+} from "../controllers/inventories/index.js";
 
-import { authUserMiddleware } from '../middlewares/index.js';
+import { authUserMiddleware } from "../middlewares/index.js";
 
 // ------------------------------------------
 const router = express.Router();
 
-router.post('/new', authUserMiddleware, addInventoryController);
-router.get('/', authUserMiddleware, getUserInventoriesController);
+router.post("/new", authUserMiddleware, addInventoryController);
+router.get("/", authUserMiddleware, getUserInventoriesController);
 router.put(
-    '/:inventoryId/update',
-    authUserMiddleware,
-    updateInventoryController,
+  "/:inventoryId/update",
+  authUserMiddleware,
+  updateInventoryController,
 );
 router.delete(
-    '/:inventoryId/delete',
-    authUserMiddleware,
-    deleteInventoryController,
+  "/:inventoryId/delete",
+  authUserMiddleware,
+  deleteInventoryController,
 );
 
 export default router;

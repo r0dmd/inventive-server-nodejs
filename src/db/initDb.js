@@ -1,19 +1,19 @@
-import 'dotenv/config';
-import getPool from './getPool.js';
+import "dotenv/config";
+import getPool from "./getPool.js";
 
 // ------------------------------------------
 const main = async () => {
-    try {
-        const pool = await getPool();
+  try {
+    const pool = await getPool();
 
-        console.log(
-            'Deleting tables in reverse order to avoid foreign key constraints...',
-        );
-        await pool.query('DROP TABLE IF EXISTS products, inventories, users');
+    console.log(
+      "Deleting tables in reverse order to avoid foreign key constraints...",
+    );
+    await pool.query("DROP TABLE IF EXISTS products, inventories, users");
 
-        console.log('Generating tables...');
-        // USERS
-        await pool.query(`
+    console.log("Generating tables...");
+    // USERS
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS users (
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 username VARCHAR(25) UNIQUE NOT NULL,
@@ -24,8 +24,8 @@ const main = async () => {
                 lastAuthUpdate DATETIME
             )
         `);
-        // INVENTORIES
-        await pool.query(`
+    // INVENTORIES
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS inventories (
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 userId INT UNSIGNED NOT NULL,
@@ -35,9 +35,9 @@ const main = async () => {
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )
         `);
-        // PRODUCTS
-        // quantity is unsigned to avoid negative product stock and defaults to 0
-        await pool.query(`
+    // PRODUCTS
+    // quantity is unsigned to avoid negative product stock and defaults to 0
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS products (
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 inventoryId INT UNSIGNED NOT NULL,
@@ -50,12 +50,12 @@ const main = async () => {
             )
         `);
 
-        console.log('Tables generated successfully!');
-        process.exit(0);
-    } catch (err) {
-        console.error(err);
-        process.exit(1);
-    }
+    console.log("Tables generated successfully!");
+    process.exit(0);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
 };
 
 // Function call

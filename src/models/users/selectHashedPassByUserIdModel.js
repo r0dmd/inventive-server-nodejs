@@ -1,19 +1,19 @@
 // We need the function which returns the connection to the DB
-import getPool from '../../db/getPool.js';
+import getPool from "../../db/getPool.js";
 
 // ------------------------------------------
 const selectHashedPassByUserIdModel = async (id) => {
-    // NOTE: About try-catch in models. Not mandatory if the error management is done in a higher layer, like in the controllers or a global error middleware. This allows the model to focus exclusively on the DB query. Notwithstanding, including a try-catch could be useful to catch specific errors from the DB (connection, syntax...) and to throw custom messages
+  // NOTE: About try-catch in models. Not mandatory if the error management is done in a higher layer, like in the controllers or a global error middleware. This allows the model to focus exclusively on the DB query. Notwithstanding, including a try-catch could be useful to catch specific errors from the DB (connection, syntax...) and to throw custom messages
 
-    const pool = await getPool();
+  const pool = await getPool();
 
-    // NOTE: pool.query returns an array of arrays; inside the first position the data, and inside the second a lot of addition info which is commonly unnecessary. Therefore using destructuring ("[users] = ...") we only take the first position array, the one with the actual results
-    const [password] = await pool.query(
-        `SELECT password FROM users WHERE id = ?`,
-        [id],
-    );
+  // NOTE: pool.query returns an array of arrays; inside the first position the data, and inside the second a lot of addition info which is commonly unnecessary. Therefore using destructuring ("[users] = ...") we only take the first position array, the one with the actual results
+  const [password] = await pool.query(
+    "SELECT password FROM users WHERE id = ?",
+    [id],
+  );
 
-    return password[0];
+  return password[0];
 };
 
 export default selectHashedPassByUserIdModel;

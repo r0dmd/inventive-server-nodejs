@@ -1,3 +1,3 @@
-import productSchema from './productSchema.js';
+import productSchema from "./productSchema.js";
 
 export { productSchema };

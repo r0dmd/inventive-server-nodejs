@@ -2,12 +2,12 @@
 
 // This function compares the received data from the client with the Joi schema. Returns nothing, only throws an exception if the data doesn't fit the schema
 const validateSchemaUtil = async (schema, data) => {
-    try {
-        await schema.validateAsync(data);
-    } catch (err) {
-        err.httpStatus = 400;
-        throw err;
-    }
+  try {
+    await schema.validateAsync(data);
+  } catch (err) {
+    err.httpStatus = 400;
+    throw err;
+  }
 };
 
 export default validateSchemaUtil;
