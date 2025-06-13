@@ -5,14 +5,13 @@
   "description": "Server for Inventive app",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon ./app.js",
-    "initdb": "node ./src/db/initDb.js && nodemon ./app.js",
-    "initdummydb": "node ./src/db/initDb.js && node ./src/db/insertDummyData.js && nodemon ./app.js",
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/app.ts",
+    "initdb": "ts-node src/db/initDb.ts && nodemon --watch src --ext ts --exec ts-node src/app.ts",
+    "initdummydb": "ts-node src/db/initDb.ts && ts-node src/db/insertDummyData.ts && nodemon --watch src --ext ts --exec ts-node src/app.ts",
     "format": "biome format . --write",
     "lint": "biome lint .",
     "check": "biome check"
   },
-
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -32,7 +31,14 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/multer": "^1.4.13",
+    "@types/node": "^24.0.1",
     "globals": "^16.0.0",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
