@@ -1,4 +1,4 @@
-import generateErrorUtil from "./generateErrorUtil.js";
-import validateSchemaUtil from "./validateSchemaUtil.js";
+import { generateErrorUtil } from "./generateErrorUtil";
+import validateSchemaUtil from "./validateSchemaUtil";
 
 export { generateErrorUtil, validateSchemaUtil };
