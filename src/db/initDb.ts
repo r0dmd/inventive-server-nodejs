@@ -1,8 +1,10 @@
 import "dotenv/config";
-import getPool from "./getPool.js";
+import getPool from "./getPool";
 
 // ------------------------------------------
-const main = async () => {
+// NOTE: Although this function ends with process.exit(), TS still infers it as Promise<void>, because it's async and not all paths are statically unreachable. So we explicitly annotate it as such.
+
+const main = async (): Promise<void> => {
   try {
     const pool = await getPool();
 

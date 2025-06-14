@@ -11,6 +11,7 @@ export class CustomError extends Error {
 }
 
 // NOTE: This function always throws and never returns, so its return type is 'never'. 'void' would incorrectly imply it returns normally—'never' tells TypeScript it's unreachable.
+// Default code 500 'Internal server error'
 export const generateErrorUtil = (msg: string, code = 500): never => {
   if (typeof code !== "number" || code < 100 || code > 599) {
     throw new Error("Invalid HTTP status code");
