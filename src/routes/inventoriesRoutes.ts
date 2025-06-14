@@ -5,9 +5,9 @@ import {
   deleteInventoryController,
   getUserInventoriesController,
   updateInventoryController,
-} from "../controllers/inventories/index.js";
+} from "../controllers/inventories/index";
 
-import { authUserMiddleware } from "../middlewares/index.js";
+import { authUserMiddleware } from "../middlewares/index";
 
 // ------------------------------------------
 const router = express.Router();

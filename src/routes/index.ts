@@ -1,5 +1,5 @@
-import inventoriesRoutes from "./inventoriesRoutes.js";
-import productsRoutes from "./productsRoutes.js";
-import usersRoutes from "./usersRoutes.js";
+import inventoriesRoutes from "./inventoriesRoutes";
+import productsRoutes from "./productsRoutes";
+import usersRoutes from "./usersRoutes";
 
 export { usersRoutes, inventoriesRoutes, productsRoutes };

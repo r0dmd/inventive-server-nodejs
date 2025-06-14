@@ -4,8 +4,8 @@ import {
   deleteProductController,
   getUserProductsController,
   updateProductController,
-} from "../controllers/products/index.js";
-import { authUserMiddleware } from "../middlewares/index.js";
+} from "../controllers/products/index";
+import { authUserMiddleware } from "../middlewares/index";
 
 // ------------------------------------------
 const router = express.Router();

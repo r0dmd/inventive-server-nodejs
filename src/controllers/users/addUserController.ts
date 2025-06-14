@@ -9,7 +9,7 @@ import { generateErrorUtil, validateSchemaUtil } from "../../utils/index.js";
 // ------------------------------------------
 const addUserController = async (req, res, next) => {
   try {
-    // Note: The data validation goes before extracting them from the body, to make sure all the required fields are present and in the proper format *before* processing them in the code. If we don't use a validation schema, we would have to do additional checks later on, such as `if (!username || !password) generateErrorUtil("Missing fields", 400);`, which is less efficient and more prone to repetitive errors
+    // Note: The data validation goes before extracting them from the body, to make sure all the required fields are present and in the proper format *before* processing them in the code. If we don't use a validation schema, we would have to do additional checks later on, such as `if (!username || !password) throw generateErrorUtil("Missing fields", 400);`, which is less efficient and more prone to repetitive errors
     await validateSchemaUtil(userSchema, req.body);
 
     // REQ: Represents the client's query and contains its info. Here we obtain the necessary fields from the body once validated
@@ -17,11 +17,12 @@ const addUserController = async (req, res, next) => {
 
     // Checks before inserting into the DB
     const usernameAlreadyExists = await selectUserByUsernameModel(username);
-    if (usernameAlreadyExists) generateErrorUtil("Unavailable username", 409);
+    if (usernameAlreadyExists)
+      throw generateErrorUtil("Unavailable username", 409);
 
     // User insertion. Note: `addUserModel` returns `res.insertId` (the ID of that row), which will always be >=1 in case of success. So if the returned value is <1, that means there has been an error in the insertion
     if ((await addUserModel(username, password)) < 1)
-      generateErrorUtil("Database insertion error", 400);
+      throw generateErrorUtil("Database insertion error", 400);
 
     // RES: Sends a response to the client
     // Code 200 (OK): General success, in operations such as queries and updates, sent by default, no need to explicitly write it

@@ -20,13 +20,13 @@ const addInventoryController = async (req, res, next) => {
     );
 
     if (inventoryExists) {
-      generateErrorUtil("You already have this inventory", 409);
+      throw generateErrorUtil("You already have this inventory", 409);
     }
 
     const newInventoryId = await addInventoryModel(req.user.id, inventoryName);
 
     if (newInventoryId < 1)
-      generateErrorUtil("Error adding inventory to the database", 400);
+      throw generateErrorUtil("Error adding inventory to the database", 400);
 
     res.status(201).send({
       status: "ok",

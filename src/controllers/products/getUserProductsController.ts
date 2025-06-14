@@ -8,7 +8,7 @@ const getUserProductsController = async (req, res, next) => {
     const products = await selectProductsByUserIdModel(userId);
 
     if (!products || products.length === 0) {
-      generateErrorUtil("No products found for this user", 404);
+      throw generateErrorUtil("No products found for this user", 404);
     }
 
     res.send({

@@ -8,13 +8,13 @@ const updateUserController = async (req, res, next) => {
     // Get new username from request body
     const { newUsername } = req.body;
     if (!newUsername) {
-      generateErrorUtil("Missing fields", 400);
+      throw generateErrorUtil("Missing fields", 400);
     }
 
     // Update the user
     const affectedRows = await updateUserModel(req.user.id, newUsername);
     if (affectedRows < 1)
-      generateErrorUtil("There was an error updating the user data", 500);
+      throw generateErrorUtil("There was an error updating the user data", 500);
 
     // Send response to the client
     res.send({

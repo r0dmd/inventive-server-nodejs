@@ -12,7 +12,7 @@ const updateLastAuthUpdateModel = async (userId) => {
   );
 
   if (result.affectedRows === 0) {
-    generateErrorUtil("Usuario no encontrado", 404);
+    throw generateErrorUtil("Usuario no encontrado", 404);
   }
 
   // NOTA: No es necesario, pero retornar 'true' suele ser una convención para explicitar que no hubo fallos. Puede ser útil para confirmar que la operación fue exitosa o para facilitar pruebas unitarias donde interesa comprobar que el flujo completo se ejecutó sin problemas

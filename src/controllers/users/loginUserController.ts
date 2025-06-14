@@ -20,12 +20,12 @@ const loginUserController = async (req, res, next) => {
 
     // Username check
     const user = await selectUserByUsernameModel(username);
-    if (!user) generateErrorUtil("User not found", 404);
+    if (!user) throw generateErrorUtil("User not found", 404);
 
     // Password check
     const hashedPass = await selectHashedPassByUserIdModel(user.id);
     const passwordValid = await bcrypt.compare(password, hashedPass.password);
-    if (!passwordValid) generateErrorUtil("Invalid password", 401);
+    if (!passwordValid) throw generateErrorUtil("Invalid password", 401);
 
     // Token generation
     const tokenInfo = {

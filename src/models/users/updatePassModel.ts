@@ -17,7 +17,7 @@ const updatePassModel = async (userId, oldPass, newPass) => {
     pass.length === 0 ||
     (await bcrypt.compare(oldPass, pass[0].password)) === false
   ) {
-    generateErrorUtil("Invalid credentials", 401);
+    throw generateErrorUtil("Invalid credentials", 401);
   }
 
   const hashedNewPass = await bcrypt.hash(newPass, 10);
@@ -30,7 +30,7 @@ const updatePassModel = async (userId, oldPass, newPass) => {
 
   // If the affected rows are 0, that means the user was not found
   if (res.affectedRows === 0) {
-    generateErrorUtil("User not found", 400);
+    throw generateErrorUtil("User not found", 400);
   }
   return res.affectedRows;
 };

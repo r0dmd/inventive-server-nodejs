@@ -12,13 +12,13 @@ const deleteUserController = async (req, res, next) => {
     // Fetch the user to ensure it exists
     const user = await selectUserByIdModel(userId);
     if (!user) {
-      generateErrorUtil("User not found", 404);
+      throw generateErrorUtil("User not found", 404);
     }
 
     // Delete the user from the database
     const userDeleted = await deleteUserByIdModel(userId);
     if (!userDeleted) {
-      generateErrorUtil("User not found", 404);
+      throw generateErrorUtil("User not found", 404);
     }
 
     res.send({

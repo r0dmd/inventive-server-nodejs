@@ -15,7 +15,7 @@ const updatePassController = async (req, res, next) => {
 
     const affectedRows = await updatePassModel(userId, oldPass, newPass);
     if (affectedRows === 0)
-      generateErrorUtil("Error while updating password", 400);
+      throw generateErrorUtil("Error while updating password", 400);
 
     // It's an auth controller, so we need to include the auth update date
     await updateLastAuthUpdateModel(userId);

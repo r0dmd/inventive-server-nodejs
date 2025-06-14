@@ -10,12 +10,9 @@ import {
   loginUserController,
   updatePassController,
   updateUserController,
-} from "../controllers/users/index.js";
+} from "../controllers/users/index";
 
-import {
-  authAdminMiddleware,
-  authUserMiddleware,
-} from "../middlewares/index.js";
+import { authAdminMiddleware, authUserMiddleware } from "../middlewares/index";
 
 // ------------------------------------------
 const router = express.Router();

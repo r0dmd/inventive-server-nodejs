@@ -11,11 +11,14 @@ const deleteInventoryController = async (req, res, next) => {
 
     const inventoryToDelete = await selectInventoryByIdModel(inventoryId);
     if (inventoryToDelete.length === 0)
-      generateErrorUtil("Inventory not found", 404);
+      throw generateErrorUtil("Inventory not found", 404);
 
     const affectedRows = await deleteInventoryModel(inventoryId);
     if (affectedRows < 1)
-      generateErrorUtil("There was an error deleting this inventory", 500);
+      throw generateErrorUtil(
+        "There was an error deleting this inventory",
+        500,
+      );
 
     res.send({
       status: "ok",

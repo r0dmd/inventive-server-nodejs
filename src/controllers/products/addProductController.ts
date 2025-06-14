@@ -19,7 +19,8 @@ const addProductController = async (req, res, next) => {
       productName,
       inventoryId,
     );
-    if (productExists) generateErrorUtil("You already have this product", 409);
+    if (productExists)
+      throw generateErrorUtil("You already have this product", 409);
 
     const newProductId = await addProductModel(
       inventoryId,
@@ -28,7 +29,7 @@ const addProductController = async (req, res, next) => {
       quantity,
     );
     if (newProductId < 1)
-      generateErrorUtil("Error adding product to the database", 400);
+      throw generateErrorUtil("Error adding product to the database", 400);
 
     res.status(201).send({
       status: "ok",

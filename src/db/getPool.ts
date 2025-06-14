@@ -6,7 +6,7 @@ import { generateErrorUtil } from "../utils/index";
 const { MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB } = process.env;
 
 if (!MYSQL_HOST || !MYSQL_USER || !MYSQL_PASS || !MYSQL_DB) {
-  generateErrorUtil("Missing required MySQL environment variables.");
+  throw generateErrorUtil("Missing required MySQL environment variables.");
 }
 
 // ------------------------------------------
@@ -50,7 +50,7 @@ const getPool = async (): Promise<Pool> => {
   } catch (err) {
     console.error(err);
     // NOTE: Explicitly return the `never`-returning function to satisfy TS's control flow analysis
-    return generateErrorUtil(
+    return throw generateErrorUtil(
       "The connection to the database could not be established.",
       503,
     );

@@ -11,12 +11,12 @@ const updateInventoryController = async (req, res, next) => {
     const { newInventoryName } = req.body;
 
     if (!newInventoryName) {
-      generateErrorUtil("Missing fields", 400);
+      throw generateErrorUtil("Missing fields", 400);
     }
 
     const [inventoryData] = await selectInventoryByIdModel(inventoryId);
     if (inventoryData.length < 1) {
-      generateErrorUtil("Inventory not found", 404);
+      throw generateErrorUtil("Inventory not found", 404);
     }
 
     const { affectedRows, updatedInventory } = await updateInventoryModel(
@@ -25,7 +25,7 @@ const updateInventoryController = async (req, res, next) => {
     );
 
     if (affectedRows === 0) {
-      generateErrorUtil("Failed to update inventory", 500);
+      throw generateErrorUtil("Failed to update inventory", 500);
     }
 
     res.send({

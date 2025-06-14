@@ -1,12 +1,26 @@
-import { selectUserByIdModel } from "../../models/users/index.js";
-import { generateErrorUtil } from "../../utils/index.js";
+import { selectUserByIdModel } from "../../models/users/index";
+import { generateErrorUtil } from "../../utils/index";
 
-const getUserController = async (req, res, next) => {
+import type { Request, NextFunction, Response } from "express";
+
+// -------------------------------
+const getUserController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
+    // NOTE: Since user is optional on the type, TypeScript forces you to check its existence to avoid runtime errors.
+    // Your authUserMiddleware guarantees req.user is added on successful auth, but the compiler doesn’t know that guarantees on the controller level — so you must verify or assert it.
+    // This pattern also helps if a route is accessible without authentication or if middleware order changes.
+    if (!req.user) {
+      throw generateErrorUtil("User info missing in request", 401);
+    }
+
     const user = await selectUserByIdModel(req.user.id);
 
     if (!user) {
-      generateErrorUtil("User not found", 404);
+      throw generateErrorUtil("User not found", 404);
     }
 
     res.send({
