@@ -2,6 +2,7 @@
 import "dotenv/config";
 const { PORT, UPLOADS_DIR } = process.env;
 
+import "./types/express";
 import cors from "cors";
 // Dependencies
 import express, {

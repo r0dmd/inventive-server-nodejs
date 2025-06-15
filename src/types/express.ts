@@ -16,7 +16,6 @@ export interface AuthenticatedRequest extends Request {
 //    to add an optional `user` property, which will be optional because not all requests will have it (e.g., unauthenticated ones). This way, the extended Request is available everywhere without explicit imports, which keeps code DRY and consistent.
 
 // NOTE: On top of that, we also have a custom PublicUser interface with the public user data.
-import * as express from "express";
 
 declare global {
   namespace Express {
