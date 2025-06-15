@@ -7,11 +7,18 @@ import {
   selectInventoryByNameAndUserIdModel,
 } from "../../models/inventories/index";
 
-// ------------------------------------------
-const addInventoryController = async (req, res, next) => {
-  try {
-    await validateSchemaUtil(inventorySchema, req.body);
+import type { NextFunction, Request, Response } from "express";
 
+// ------------------------------------------
+const addInventoryController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    if (!req.user) throw generateErrorUtil("User info missing in request", 401);
+
+    await validateSchemaUtil(inventorySchema, req.body);
     const { inventoryName } = req.body;
 
     const inventoryExists = await selectInventoryByNameAndUserIdModel(
