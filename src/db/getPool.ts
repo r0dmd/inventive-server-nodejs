@@ -50,7 +50,7 @@ const getPool = async (): Promise<Pool> => {
   } catch (err) {
     console.error(err);
     // NOTE: Explicitly return the `never`-returning function to satisfy TS's control flow analysis
-    return throw generateErrorUtil(
+    return generateErrorUtil(
       "The connection to the database could not be established.",
       503,
     );
