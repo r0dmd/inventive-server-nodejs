@@ -1,0 +1,38 @@
+import bcrypt from "bcrypt";
+import getPool from "../../db/getPool";
+import { generateErrorUtil } from "../../utils/index";
+
+// ------------------------------------------
+const updatePassModel = async (userId, oldPass, newPass) => {
+  const pool = await getPool();
+
+  const [pass] = await pool.query(
+    `
+        SELECT password FROM users WHERE id = ?`,
+    [userId],
+  );
+
+  // Checks
+  if (
+    pass.length === 0 ||
+    (await bcrypt.compare(oldPass, pass[0].password)) === false
+  ) {
+    throw generateErrorUtil("Invalid credentials", 401);
+  }
+
+  const hashedNewPass = await bcrypt.hash(newPass, 10);
+
+  const [res] = await pool.query(
+    `
+        UPDATE users SET password = ? WHERE id = ?`,
+    [hashedNewPass, userId],
+  );
+
+  // If the affected rows are 0, that means the user was not found
+  if (res.affectedRows === 0) {
+    throw generateErrorUtil("User not found", 400);
+  }
+  return res.affectedRows;
+};
+
+export default updatePassModel;
