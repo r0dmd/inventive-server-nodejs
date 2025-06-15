@@ -3,7 +3,10 @@ import getPool from "../../db/getPool";
 import type { ResultSetHeader } from "mysql2";
 
 // ------------------------------------------
-const addUserModel = async (username: string, password: string) => {
+const addUserModel = async (
+  username: string,
+  password: string,
+): Promise<number> => {
   const pool = await getPool();
 
   // Password encrypting
