@@ -1,3 +1,4 @@
+import type { NextFunction, Request, Response } from "express";
 import {
   deleteUserByIdModel,
   selectUserByIdModel,
@@ -5,21 +6,20 @@ import {
 import { generateErrorUtil } from "../../utils/index";
 
 // ------------------------------------------
-const deleteUserController = async (req, res, next) => {
+const deleteUserController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const { userId } = req.params;
+    const userId = Number(req.params.userId);
+    if (Number.isNaN(userId)) throw generateErrorUtil("Invalid user ID", 400);
 
-    // Fetch the user to ensure it exists
     const user = await selectUserByIdModel(userId);
-    if (!user) {
-      throw generateErrorUtil("User not found", 404);
-    }
+    if (!user) throw generateErrorUtil("User not found", 404);
 
-    // Delete the user from the database
     const userDeleted = await deleteUserByIdModel(userId);
-    if (!userDeleted) {
-      throw generateErrorUtil("User not found", 404);
-    }
+    if (!userDeleted) throw generateErrorUtil("User not found", 404);
 
     res.send({
       status: "ok",
