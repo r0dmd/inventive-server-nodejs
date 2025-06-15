@@ -19,6 +19,8 @@ export interface PublicUser {
   id: number;
   username: string;
   role: string;
+  createdAt: Date;
+  modifiedAt: Date;
 }
 
 // Intersection type combining our domain-level `PublicUser` interface with MySQL2's `RowDataPacket` to satisfy query typing requirements., because even if we are only returning an user, we must satisfy the MySQL2 typing constraints of the query.
