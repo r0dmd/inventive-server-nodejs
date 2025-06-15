@@ -1,4 +1,4 @@
-import updatePassSchema from "./updatePassSchema.js";
-import userSchema from "./userSchema.js";
+import updatePassSchema from "./updatePassSchema";
+import userSchema from "./userSchema";
 
 export { updatePassSchema, userSchema };

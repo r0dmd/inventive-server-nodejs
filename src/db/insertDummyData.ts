@@ -1,5 +1,5 @@
 import "dotenv/config";
-import getPool from "./getPool.js";
+import getPool from "./getPool";
 import type { ResultSetHeader } from "mysql2";
 
 import bcrypt from "bcrypt";

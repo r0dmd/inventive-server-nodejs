@@ -1,4 +1,4 @@
-import { selectUserInventoriesModel } from "../../models/inventories/index.js";
+import { selectUserInventoriesModel } from "../../models/inventories/index";
 
 // ------------------------------------------
 const getUserInventoriesController = async (req, res, next) => {

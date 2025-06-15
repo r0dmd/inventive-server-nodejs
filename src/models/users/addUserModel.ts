@@ -1,15 +1,18 @@
 import bcrypt from "bcrypt";
-import getPool from "../../db/getPool.js";
+import getPool from "../../db/getPool";
+import type { ResultSetHeader } from "mysql2";
 
 // ------------------------------------------
-const addUserModel = async (username, password) => {
+const addUserModel = async (username: string, password: string) => {
   const pool = await getPool();
 
   // Password encrypting
   const hashedPass = await bcrypt.hash(password, 10);
 
   // User insertion
-  const [res] = await pool.query(
+  // NOTE: We cast the query result as `ResultSetHeader` to access properties like `insertId`.
+  // This is necessary because `pool.query` returns a generic type that doesn’t include those fields by default.
+  const [res] = await pool.query<ResultSetHeader>(
     "INSERT INTO users(username, password) VALUES (?, ?)",
     [username, hashedPass],
   );

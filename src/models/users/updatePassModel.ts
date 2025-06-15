@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
-import getPool from "../../db/getPool.js";
-import { generateErrorUtil } from "../../utils/index.js";
+import getPool from "../../db/getPool";
+import { generateErrorUtil } from "../../utils/index";
 
 // ------------------------------------------
 const updatePassModel = async (userId, oldPass, newPass) => {

@@ -1,13 +1,19 @@
 import {
   addUserModel,
   selectUserByUsernameModel,
-} from "../../models/users/index.js";
-import { userSchema } from "../../schemas/users/index.js";
+} from "../../models/users/index";
+import { userSchema } from "../../schemas/users/index";
 
-import { generateErrorUtil, validateSchemaUtil } from "../../utils/index.js";
+import type { NextFunction, Request, Response } from "express";
+
+import { generateErrorUtil, validateSchemaUtil } from "../../utils/index";
 
 // ------------------------------------------
-const addUserController = async (req, res, next) => {
+const addUserController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     // Note: The data validation goes before extracting them from the body, to make sure all the required fields are present and in the proper format *before* processing them in the code. If we don't use a validation schema, we would have to do additional checks later on, such as `if (!username || !password) throw generateErrorUtil("Missing fields", 400);`, which is less efficient and more prone to repetitive errors
     await validateSchemaUtil(userSchema, req.body);

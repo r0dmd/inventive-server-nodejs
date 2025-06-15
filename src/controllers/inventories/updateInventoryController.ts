@@ -1,8 +1,8 @@
 import {
   selectInventoryByIdModel,
   updateInventoryModel,
-} from "../../models/inventories/index.js";
-import { generateErrorUtil } from "../../utils/index.js";
+} from "../../models/inventories/index";
+import { generateErrorUtil } from "../../utils/index";
 
 // ------------------------------------------
 const updateInventoryController = async (req, res, next) => {

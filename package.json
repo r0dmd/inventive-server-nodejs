@@ -3,7 +3,7 @@
   "name": "inventive-server",
   "version": "1.0.0",
   "description": "Server for Inventive app",
-  "main": "app.js",
+  "main": "app.ts",
   "scripts": {
     "dev": "nodemon --watch src --ext ts --exec ts-node src/app.ts",
     "initdb": "ts-node src/db/initDb.ts && nodemon --watch src --ext ts --exec ts-node src/app.ts",

@@ -5,10 +5,10 @@ import {
   selectHashedPassByUserIdModel,
   selectUserByUsernameModel,
   updateLastAuthUpdateModel,
-} from "../../models/users/index.js";
-import { userSchema } from "../../schemas/users/index.js";
+} from "../../models/users/index";
+import { userSchema } from "../../schemas/users/index";
 
-import { generateErrorUtil, validateSchemaUtil } from "../../utils/index.js";
+import { generateErrorUtil, validateSchemaUtil } from "../../utils/index";
 
 const { SECRET, TOKEN_EXPIRATION } = process.env;
 

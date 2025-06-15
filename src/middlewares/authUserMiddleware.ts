@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 
-import type { TokenPayload } from "../types/tokenPayload";
-
+import type { TokenPayload } from "../types/user";
 import type { NextFunction, Request, Response } from "express";
 
 import { generateErrorUtil } from "../utils/index";

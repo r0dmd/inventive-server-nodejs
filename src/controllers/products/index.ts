@@ -1,7 +1,7 @@
-import addProductController from "./addProductController.js";
-import deleteProductController from "./deleteProductController.js";
-import getUserProductsController from "./getUserProductsController.js";
-import updateProductController from "./updateProductController.js";
+import addProductController from "./addProductController";
+import deleteProductController from "./deleteProductController";
+import getUserProductsController from "./getUserProductsController";
+import updateProductController from "./updateProductController";
 
 export {
   getUserProductsController,

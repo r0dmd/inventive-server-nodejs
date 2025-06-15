@@ -1,4 +1,4 @@
-import { selectAllUsersModel } from "../../models/users/index.js";
+import { selectAllUsersModel } from "../../models/users/index";
 
 // ------------------------------------------
 const getAllUsersController = async (req, res, next) => {

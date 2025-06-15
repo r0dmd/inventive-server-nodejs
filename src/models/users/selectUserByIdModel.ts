@@ -1,4 +1,4 @@
-import getPool from "../../db/getPool.js";
+import getPool from "../../db/getPool";
 
 const selectUserByIdModel = async (id) => {
   const pool = await getPool();

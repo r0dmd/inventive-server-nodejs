@@ -1,12 +1,12 @@
-import addUserModel from "./addUserModel.js";
-import deleteUserByIdModel from "./deleteUserModel.js";
-import selectAllUsersModel from "./selectAllUsersModel.js";
-import selectHashedPassByUserIdModel from "./selectHashedPassByUserIdModel.js";
-import selectUserByIdModel from "./selectUserByIdModel.js";
-import selectUserByUsernameModel from "./selectUserByUsernameModel.js";
-import updateLastAuthUpdateModel from "./updateLastAuthUpdateModel.js";
-import updatePassModel from "./updatePassModel.js";
-import updateUserModel from "./updateUserModel.js";
+import addUserModel from "./addUserModel";
+import deleteUserByIdModel from "./deleteUserModel";
+import selectAllUsersModel from "./selectAllUsersModel";
+import selectHashedPassByUserIdModel from "./selectHashedPassByUserIdModel";
+import selectUserByIdModel from "./selectUserByIdModel";
+import selectUserByUsernameModel from "./selectUserByUsernameModel";
+import updateLastAuthUpdateModel from "./updateLastAuthUpdateModel";
+import updatePassModel from "./updatePassModel";
+import updateUserModel from "./updateUserModel";
 
 export {
   addUserModel,

@@ -1,8 +1,8 @@
 import {
   deleteProductModel,
   selectProductByIdModel,
-} from "../../models/products/index.js";
-import { generateErrorUtil } from "../../utils/index.js";
+} from "../../models/products/index";
+import { generateErrorUtil } from "../../utils/index";
 
 // ------------------------------------------
 const deleteProductController = async (req, res, next) => {

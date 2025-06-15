@@ -1,5 +1,5 @@
-import { updateUserModel } from "../../models/users/index.js";
-import { generateErrorUtil } from "../../utils/index.js";
+import { updateUserModel } from "../../models/users/index";
+import { generateErrorUtil } from "../../utils/index";
 
 // ------------------------------------------
 // Controller function to update the username and password

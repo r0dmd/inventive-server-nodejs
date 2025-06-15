@@ -1,5 +1,5 @@
-import getPool from "../../db/getPool.js";
-import { generateErrorUtil } from "../../utils/index.js";
+import getPool from "../../db/getPool";
+import { generateErrorUtil } from "../../utils/index";
 
 // ------------------------------------------
 // Función para actualizar la fecha de última autenticación de un usuario en la BD, a usar en controladores donde se necesite actualizar la fecha de autentificación, como después de un inicio de sesión o un cambio de contraseña

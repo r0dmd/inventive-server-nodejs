@@ -1,12 +1,23 @@
-import { generateErrorUtil } from "../utils/index.js";
+import type { NextFunction, Request, Response } from "express";
+import { generateErrorUtil } from "../utils/index";
 
 // ------------------------------------------
-const authAdminMiddleware = (req, res, next) => {
-  if (req.user.role !== "admin") {
-    throw generateErrorUtil("Unauthorized", 403);
+// Middleware to protect admin-only routes
+const authAdminMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  if (!req.user) {
+    throw generateErrorUtil("Authentication required", 401);
   }
 
-  // User is admin, continue
+  if (req.user.role !== "admin") {
+    // User authenticated but not authorized
+    throw generateErrorUtil("Admin access required", 403);
+  }
+
+  // User is admin, proceed
   next();
 };
 

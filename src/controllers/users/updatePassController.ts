@@ -1,9 +1,9 @@
 import {
   updateLastAuthUpdateModel,
   updatePassModel,
-} from "../../models/users/index.js";
-import { updatePassSchema } from "../../schemas/users/index.js";
-import { generateErrorUtil, validateSchemaUtil } from "../../utils/index.js";
+} from "../../models/users/index";
+import { updatePassSchema } from "../../schemas/users/index";
+import { generateErrorUtil, validateSchemaUtil } from "../../utils/index";
 
 // ------------------------------------------
 const updatePassController = async (req, res, next) => {

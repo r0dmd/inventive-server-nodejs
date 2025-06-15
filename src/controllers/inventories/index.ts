@@ -1,7 +1,7 @@
-import addInventoryController from "./addInventoryController.js";
-import deleteInventoryController from "./deleteInventoryController.js";
-import getUserInventoriesController from "./getUserInventoriesController.js";
-import updateInventoryController from "./updateInventoryController.js";
+import addInventoryController from "./addInventoryController";
+import deleteInventoryController from "./deleteInventoryController";
+import getUserInventoriesController from "./getUserInventoriesController";
+import updateInventoryController from "./updateInventoryController";
 
 export {
   addInventoryController,

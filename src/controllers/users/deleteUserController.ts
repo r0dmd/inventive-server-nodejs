@@ -1,8 +1,8 @@
 import {
   deleteUserByIdModel,
   selectUserByIdModel,
-} from "../../models/users/index.js";
-import { generateErrorUtil } from "../../utils/index.js";
+} from "../../models/users/index";
+import { generateErrorUtil } from "../../utils/index";
 
 // ------------------------------------------
 const deleteUserController = async (req, res, next) => {

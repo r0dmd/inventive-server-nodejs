@@ -1,8 +1,8 @@
 import {
   selectProductByIdModel,
   updateProductModel,
-} from "../../models/products/index.js";
-import { generateErrorUtil } from "../../utils/index.js";
+} from "../../models/products/index";
+import { generateErrorUtil } from "../../utils/index";
 
 // ------------------------------------------
 

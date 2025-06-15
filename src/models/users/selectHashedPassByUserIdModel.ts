@@ -1,5 +1,5 @@
 // We need the function which returns the connection to the DB
-import getPool from "../../db/getPool.js";
+import getPool from "../../db/getPool";
 
 // ------------------------------------------
 const selectHashedPassByUserIdModel = async (id) => {

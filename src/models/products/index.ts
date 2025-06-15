@@ -1,9 +1,9 @@
-import addProductModel from "./addProductModel.js";
-import deleteProductModel from "./deleteProductModel.js";
-import selectProductByIdModel from "./selectProductByIdModel.js";
-import selectProductByNameAndInventoryIdModel from "./selectProductByNameAndInventoryIdModel.js";
-import selectProductByUserIdModel from "./selectProductsByUserIdModel.js";
-import updateProductModel from "./updateProductModel.js";
+import addProductModel from "./addProductModel";
+import deleteProductModel from "./deleteProductModel";
+import selectProductByIdModel from "./selectProductByIdModel";
+import selectProductByNameAndInventoryIdModel from "./selectProductByNameAndInventoryIdModel";
+import selectProductByUserIdModel from "./selectProductsByUserIdModel";
+import updateProductModel from "./updateProductModel";
 
 export {
   addProductModel,

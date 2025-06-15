@@ -1,3 +1,3 @@
-import inventorySchema from "./inventorySchema.js";
+import inventorySchema from "./inventorySchema";
 
 export { inventorySchema };

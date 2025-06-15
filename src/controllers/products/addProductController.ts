@@ -1,11 +1,11 @@
-import { generateErrorUtil, validateSchemaUtil } from "../../utils/index.js";
+import { generateErrorUtil, validateSchemaUtil } from "../../utils/index";
 
-import { productSchema } from "../../schemas/products/index.js";
+import { productSchema } from "../../schemas/products/index";
 
 import {
   addProductModel,
   selectProductByNameAndInventoryIdModel,
-} from "../../models/products/index.js";
+} from "../../models/products/index";
 
 // ------------------------------------------
 const addProductController = async (req, res, next) => {

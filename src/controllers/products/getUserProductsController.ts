@@ -1,5 +1,5 @@
-import selectProductsByUserIdModel from "../../models/products/selectProductsByUserIdModel.js";
-import { generateErrorUtil } from "../../utils/index.js";
+import selectProductsByUserIdModel from "../../models/products/selectProductsByUserIdModel";
+import { generateErrorUtil } from "../../utils/index";
 
 const getUserProductsController = async (req, res, next) => {
   try {

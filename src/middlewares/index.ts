@@ -1,4 +1,4 @@
-import authAdminMiddleware from "./authAdminMiddleware.js";
-import authUserMiddleware from "./authUserMiddleware.js";
+import authAdminMiddleware from "./authAdminMiddleware";
+import authUserMiddleware from "./authUserMiddleware";
 
 export { authAdminMiddleware, authUserMiddleware };

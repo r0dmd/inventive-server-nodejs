@@ -1,9 +1,9 @@
-import addInventoryModel from "./addInventoryModel.js";
-import deleteInventoryModel from "./deleteInventoryModel.js";
-import selectInventoryByIdModel from "./selectInventoryByIdModel.js";
-import selectInventoryByNameAndUserIdModel from "./selectInventoryByNameAndUserIdModel.js";
-import selectUserInventoriesModel from "./selectUserInventoriesModel.js";
-import updateInventoryModel from "./updateInventoryModel.js";
+import addInventoryModel from "./addInventoryModel";
+import deleteInventoryModel from "./deleteInventoryModel";
+import selectInventoryByIdModel from "./selectInventoryByIdModel";
+import selectInventoryByNameAndUserIdModel from "./selectInventoryByNameAndUserIdModel";
+import selectUserInventoriesModel from "./selectUserInventoriesModel";
+import updateInventoryModel from "./updateInventoryModel";
 
 export {
   addInventoryModel,

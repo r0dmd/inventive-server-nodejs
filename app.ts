@@ -14,7 +14,7 @@ import {
   inventoriesRoutes,
   productsRoutes,
   usersRoutes,
-} from "./src/routes/index.js";
+} from "./src/routes/index";
 
 // ------------------------------------------
 // Generating the server

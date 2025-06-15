@@ -1,4 +1,4 @@
-import getPool from "../../db/getPool.js";
+import getPool from "../../db/getPool";
 
 // ------------------------------------------
 const updateInventoryModel = async (inventoryId, inventoryName) => {
