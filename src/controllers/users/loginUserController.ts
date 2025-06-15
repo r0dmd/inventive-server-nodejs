@@ -10,10 +10,15 @@ import { userSchema } from "../../schemas/users/index";
 
 import { generateErrorUtil, validateSchemaUtil } from "../../utils/index";
 
-const { SECRET, TOKEN_EXPIRATION } = process.env;
+import type { NextFunction, Request, Response } from "express";
+import type { TokenPayload } from "../../types/user";
 
 // ------------------------------------------
-const loginUserController = async (req, res, next) => {
+const loginUserController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     await validateSchemaUtil(userSchema, req.body);
     const { username, password } = req.body;
@@ -28,14 +33,21 @@ const loginUserController = async (req, res, next) => {
     if (!passwordValid) throw generateErrorUtil("Invalid password", 401);
 
     // Token generation
-    const tokenInfo = {
+    const tokenInfo: TokenPayload = {
       id: user.id,
       username: user.username,
       role: user.role,
     };
+
+    if (!process.env.SECRET || !process.env.TOKEN_EXPIRATION)
+      throw generateErrorUtil("Missing environment variables");
+
+    const tokenExpiry = process.env
+      .TOKEN_EXPIRATION as `${number}${"s" | "m" | "h" | "d" | "y"}`;
+
     // jwt.sign(payload, secretOrPrivateKey, [options, callback])
-    const token = jwt.sign(tokenInfo, SECRET, {
-      expiresIn: TOKEN_EXPIRATION,
+    const token = jwt.sign(tokenInfo, process.env.SECRET, {
+      expiresIn: tokenExpiry,
     });
 
     // Since it's an authentication controller, we must include the DB update date of that user, to check if the token is valid or not later on
