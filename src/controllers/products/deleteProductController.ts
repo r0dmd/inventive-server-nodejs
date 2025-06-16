@@ -1,3 +1,4 @@
+import type { NextFunction, Request, Response } from "express";
 import {
   deleteProductModel,
   selectProductByIdModel,
@@ -5,9 +6,15 @@ import {
 import { generateErrorUtil } from "../../utils/index";
 
 // ------------------------------------------
-const deleteProductController = async (req, res, next) => {
+const deleteProductController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
-    const { productId } = req.params;
+    const productId = Number(req.params.productId);
+    if (Number.isNaN(productId))
+      throw generateErrorUtil("Invalid product ID", 400);
 
     const productToDelete = await selectProductByIdModel(productId);
     if (productToDelete.length === 0)
