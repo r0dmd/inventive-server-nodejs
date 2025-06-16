@@ -7,13 +7,22 @@ import {
   selectProductByNameAndInventoryIdModel,
 } from "../../models/products/index";
 
+import type { NextFunction, Request, Response } from "express";
+
 // ------------------------------------------
-const addProductController = async (req, res, next) => {
+const addProductController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
+    const inventoryId = Number(req.params.inventoryId);
+    if (Number.isNaN(inventoryId))
+      throw generateErrorUtil("Invalid inventory ID", 400);
+
     await validateSchemaUtil(productSchema, req.body);
 
     const { productName, description, quantity } = req.body;
-    const { inventoryId } = req.params;
 
     const productExists = await selectProductByNameAndInventoryIdModel(
       productName,

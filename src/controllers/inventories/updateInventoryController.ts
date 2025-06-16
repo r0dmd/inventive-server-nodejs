@@ -1,3 +1,4 @@
+import type { NextFunction, Request, Response } from "express";
 import {
   selectInventoryByIdModel,
   updateInventoryModel,
@@ -5,28 +6,30 @@ import {
 import { generateErrorUtil } from "../../utils/index";
 
 // ------------------------------------------
-const updateInventoryController = async (req, res, next) => {
+const updateInventoryController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const { inventoryId } = req.params;
-    const { newInventoryName } = req.body;
+    const inventoryId = Number(req.params.inventoryId);
+    if (Number.isNaN(inventoryId))
+      throw generateErrorUtil("Invalid inventory ID", 400);
 
-    if (!newInventoryName) {
-      throw generateErrorUtil("Missing fields", 400);
-    }
+    const { newInventoryName } = req.body;
+    if (!newInventoryName) throw generateErrorUtil("Missing fields", 400);
 
     const [inventoryData] = await selectInventoryByIdModel(inventoryId);
-    if (inventoryData.length < 1) {
+    if (inventoryData.length < 1)
       throw generateErrorUtil("Inventory not found", 404);
-    }
 
     const { affectedRows, updatedInventory } = await updateInventoryModel(
       inventoryId,
       newInventoryName,
     );
 
-    if (affectedRows === 0) {
+    if (affectedRows === 0)
       throw generateErrorUtil("Failed to update inventory", 500);
-    }
 
     res.send({
       status: "ok",

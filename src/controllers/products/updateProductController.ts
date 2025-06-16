@@ -1,32 +1,37 @@
+import type { NextFunction, Request, Response } from "express";
+import type { ProductUpdatePayload } from "../../types/product";
 import {
   selectProductByIdModel,
   updateProductModel,
 } from "../../models/products/index";
 import { generateErrorUtil } from "../../utils/index";
 
-// ------------------------------------------
-
-const updateProductController = async (req, res, next) => {
+// ---------------------------------------
+const updateProductController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const { productId } = req.params;
-    const { productName, description, quantity } = req.body;
+    const productId = Number(req.params.productId);
+    if (Number.isNaN(productId))
+      throw generateErrorUtil("Invalid product ID", 400);
 
-    if (!productName && !description && !quantity) {
+    const { productName, description, quantity } = req.body;
+    if (!productName && !description && !quantity)
       throw generateErrorUtil(
         "You must provide at least one field to update.",
         400,
       );
-    }
 
     const existingProduct = await selectProductByIdModel(productId);
-    if (!existingProduct) {
-      throw generateErrorUtil("Product not found", 404);
-    }
+    if (!existingProduct) throw generateErrorUtil("Product not found", 404);
 
-    const dataToUpdate = {};
+    const dataToUpdate: ProductUpdatePayload = {};
     if (productName) dataToUpdate.product = productName;
     if (description) dataToUpdate.description = description;
     if (quantity) dataToUpdate.quantity = quantity;
+
     await updateProductModel(productId, dataToUpdate);
 
     res.send({

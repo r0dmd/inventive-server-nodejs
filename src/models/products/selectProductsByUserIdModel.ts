@@ -1,8 +1,13 @@
 import getPool from "../../db/getPool";
-const selectProductsByUserIdModel = async (userId) => {
+import type { ProductRow } from "../../types/product";
+
+// ----------------------------
+const selectProductsByUserIdModel = async (
+  userId: number,
+): Promise<ProductRow[]> => {
   const pool = await getPool();
 
-  const [products] = await pool.query(
+  const [products] = await pool.query<ProductRow[]>(
     `
       SELECT 
         p.id AS productId,
