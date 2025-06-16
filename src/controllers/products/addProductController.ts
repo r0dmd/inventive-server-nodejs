@@ -16,7 +16,7 @@ const addProductController = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const inventoryId = Number(req.params.userId);
+    const inventoryId = Number(req.params.inventoryId);
     if (Number.isNaN(inventoryId))
       throw generateErrorUtil("Invalid inventory ID", 400);
 
