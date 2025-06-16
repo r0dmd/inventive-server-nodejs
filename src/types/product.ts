@@ -12,3 +12,10 @@ export interface ProductRow extends RowDataPacket {
 }
 
 export type ProductRows = ProductRow[];
+
+//////
+export type ProductUpdatePayload = {
+  product?: string;
+  description?: string;
+  quantity?: number;
+};

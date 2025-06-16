@@ -1,15 +1,24 @@
+import type { NextFunction, Request, Response } from "express";
 import {
   selectProductByIdModel,
   updateProductModel,
 } from "../../models/products/index";
 import { generateErrorUtil } from "../../utils/index";
+import type { ProductUpdatePayload } from "../../types/product";
 
-// ------------------------------------------
-
-const updateProductController = async (req, res, next) => {
+// ---------------------------------------
+const updateProductController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const { productId } = req.params;
+    const productId = Number(req.params.productId);
     const { productName, description, quantity } = req.body;
+
+    if (Number.isNaN(productId)) {
+      throw generateErrorUtil("Invalid product ID", 400);
+    }
 
     if (!productName && !description && !quantity) {
       throw generateErrorUtil(
@@ -23,10 +32,11 @@ const updateProductController = async (req, res, next) => {
       throw generateErrorUtil("Product not found", 404);
     }
 
-    const dataToUpdate = {};
+    const dataToUpdate: ProductUpdatePayload = {};
     if (productName) dataToUpdate.product = productName;
     if (description) dataToUpdate.description = description;
     if (quantity) dataToUpdate.quantity = quantity;
+
     await updateProductModel(productId, dataToUpdate);
 
     res.send({
