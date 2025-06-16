@@ -1,3 +1,4 @@
+import type { NextFunction, Request, Response } from "express";
 import {
   deleteInventoryModel,
   selectInventoryByIdModel,
@@ -5,9 +6,15 @@ import {
 import { generateErrorUtil } from "../../utils/index";
 
 // ------------------------------------------
-const deleteInventoryController = async (req, res, next) => {
+const deleteInventoryController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
-    const { inventoryId } = req.params;
+    const inventoryId = Number(req.params.userId);
+    if (Number.isNaN(inventoryId))
+      throw generateErrorUtil("Invalid inventory ID", 400);
 
     const inventoryToDelete = await selectInventoryByIdModel(inventoryId);
     if (inventoryToDelete.length === 0)
